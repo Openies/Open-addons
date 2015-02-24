@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_lead_form_modified" model="ir.ui.view">
+            <field name="name">crm.lead.form.modified</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <field name="street" position="after">
+                    <field name="visible_tai_addr" invisible="1"/>
+                </field>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <div attrs="{'invisible': [('visible_tai_addr','=',False)]}">
+                        <div class="address_format">
+                            <field name="tw_city" attrs="{'invisible': [('visible_tai_addr','=',False)]}" style="width: 50%%" domain="[('country_id','=',country_id)]" placeholder="City"/>
+                            <field name="tw_district_id" attrs="{'invisible': [('visible_tai_addr','=',False)]}" placeholder="District" style="width: 50%%" domain="[('state_id','=',state_id)]"/>                            
+                        </div>
+                    </div>
+                    <div attrs="{'invisible': [('visible_tai_addr','=',False)]}">
+                        <div class="address_format">
+                            <field name="tw_street" placeholder="Street" style="width: 90%%" domain="[('city_id','=',city)]"/>
+                            <field name="show_address" style="width: 10%%" />
+                        </div>
+                    </div>
+                    <div class="address_format" attrs="{'invisible':['|',('show_address','==',True),('visible_tai_addr','=',False)]}">
+                        <field name="lane" placeholder="Lane" style="width: 4em;min-width: 65px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="巷" style="width: 15%%"/></font>
+                        <field name="alley"  placeholder="Alley" style="width: 4em;min-width: 60px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="弄" style="width: 15%%"/></font>
+                        <field name="street_number" placeholder="No." style="width: 4em;min-width: 65px; margin-left:5px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="號" style="width: 15%%"/></font>
+                    </div>
+                    <div class="address_format" attrs="{'invisible':['|',('show_address','==',True),('visible_tai_addr','=',False)]}">
+                        <font style="width: 15%%" color="#d0d0d0"><label string="之" style="width: 15%%"/></font>
+                        <field name="street_number2" placeholder="No.2" style="width: 4em;min-width: 45px" />
+                        <field name="floor" placeholder="Alley" style="width: 4em;min-width: 45px; margin-left:15px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="樓之" style="width: 15%%"/></font>
+                        <field name="floor2" placeholder="No." style="width: 4em;min-width: 45px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="室" style="width: 15%%"/></font>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <record id="view_partner_form_modified" model="ir.ui.view">
+            <field name="name">res.partner.form.modified</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="street" position="after">
+                    <field name="visible_tai_addr" invisible="1"/>
+                </field>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('visible_tai_addr','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <div attrs="{'invisible': [('visible_tai_addr','=',False)]}">
+                        <div class="address_format">
+                            <field name="tw_city" attrs="{'invisible': [('visible_tai_addr','=',False)]}" style="width: 50%%" domain="[('country_id','=',country_id)]" placeholder="City"/>
+                            <field name="tw_district_id" attrs="{'invisible': [('visible_tai_addr','=',False)]}" placeholder="District" style="width: 50%%" domain="[('state_id','=',state_id)]"/>                            
+                        </div>
+                    </div>
+                    <div attrs="{'invisible': [('visible_tai_addr','=',False)]}">
+                        <div class="address_format">
+                            <field name="tw_street" placeholder="Street" style="width: 90%%" domain="[('city_id','=',city)]"/>
+                            <field name="show_address" style="width: 10%%" />
+                        </div>
+                    </div>
+                    <div class="address_format" attrs="{'invisible':['|',('show_address','==',True),('visible_tai_addr','=',False)]}">
+                        <field name="lane" placeholder="Lane" style="width: 4em;min-width: 65px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="巷" style="width: 15%%"/></font>
+                        <field name="alley"  placeholder="Alley" style="width: 4em;min-width: 60px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="弄" style="width: 15%%"/></font>
+                        <field name="street_number" placeholder="No." style="width: 4em;min-width: 65px; margin-left:5px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="號" style="width: 15%%"/></font>
+                    </div>
+                    <div class="address_format" attrs="{'invisible':['|',('show_address','==',True),('visible_tai_addr','=',False)]}">
+                        <font style="width: 15%%" color="#d0d0d0"><label string="之" style="width: 15%%"/></font>
+                        <field name="street_number2" placeholder="No.2" style="width: 4em;min-width: 45px" />
+                        <field name="floor" placeholder="Alley" style="width: 4em;min-width: 45px; margin-left:15px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="樓之" style="width: 15%%"/></font>
+                        <field name="floor2" placeholder="No." style="width: 4em;min-width: 45px" />
+                        <font style="width: 15%%" color="#d0d0d0"><label string="室" style="width: 15%%"/></font>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_city_form" model="ir.ui.view">
+            <field name="name">res.city.form</field>
+            <field name="model">res.city</field>
+            <field name="arch" type="xml">
+                <form string="City">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code" /> 
+                            <field name="state_id" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_city_tree" model="ir.ui.view">
+            <field name="name">res.city.tree</field>
+            <field name="model">res.city</field>
+            <field name="arch" type="xml">
+                <tree string="City">
+                    <field name="name"/>
+                    <field name="code" /> 
+                    <field name="state_id" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_district_form" model="ir.ui.view">
+            <field name="name">res.district.form</field>
+            <field name="model">res.street</field>
+            <field name="arch" type="xml">
+                <form string="City">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code" /> 
+                            <field name="city_id" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+         <record id="view_district_tree" model="ir.ui.view">
+            <field name="name">res.district.tree</field>
+            <field name="model">res.street</field>
+            <field name="arch" type="xml">
+                <tree string="City">
+                    <field name="name"/>
+                    <field name="code" /> 
+                    <field name="city_id" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_open_city">
+            <field name="name">City</field>
+            <field name="res_model">res.city</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_city_tree" />
+        </record>
+
+        <record model="ir.actions.act_window" id="action_open_district">
+            <field name="name">Street</field>
+            <field name="res_model">res.street</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_district_tree" />
+        </record>
+       
+        <menuitem id="menu_res_city" parent="base.menu_localisation" action="action_open_city" sequence="5" groups="base.group_no_one"/>
+         <menuitem id="menu_district_city" parent="base.menu_localisation" action="action_open_district" sequence="6" groups="base.group_no_one"/>
+        
+    </data>
+</openerp>
